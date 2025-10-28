@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout — The Weeb Den</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/checkout.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../products/images/weebdenfavicon.ico"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../products/images/weebdenfavicon.ico"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <img
+            src="../products/images/weebden-logo.png"
+            alt="Logo"
+            height="40"
+            class="me-2 rounded"
+          />
+          <span class="fw-bold">The Weeb Den</span>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">
+                <i class="fas fa-home me-1"></i>Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">
+                <i class="fas fa-book me-1"></i>Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">
+                <i class="fas fa-info-circle me-1"></i>About
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-envelope me-1"></i>Contact
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link position-relative active" href="cart.html">
+                <i class="fas fa-shopping-cart me-1"></i>Cart
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  id="cart-badge"
+                  >0</span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="container py-4">
+        <!-- Checkout Header -->
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-primary mb-3">
+            <i class="fas fa-lock me-2"></i>Secure Checkout
+          </h1>
+          <p class="lead text-muted">
+            Complete your order for authentic manga and Japanese collectibles.
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div id="checkoutResult"></div>
+
+            <div class="card shadow-lg border-0 rounded-3 mb-4">
+              <div class="card-header bg-primary text-white py-3">
+                <h4 class="mb-0">
+                  <i class="fas fa-shipping-fast me-2"></i>Order Information
+                </h4>
+              </div>
+              <div class="card-body p-4">
+                <form id="checkoutForm">
+                  <h5 class="mb-4 text-primary border-bottom pb-2">
+                    <i class="fas fa-user me-2"></i>Shipping Information
+                  </h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">First Name *</label>
+                      <input
+                        class="form-control"
+                        id="firstName"
+                        required
+                        placeholder="Enter first name"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Last Name *</label>
+                      <input
+                        class="form-control"
+                        id="lastName"
+                        required
+                        placeholder="Enter last name"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Email Address *</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="checkoutEmail"
+                        required
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Street Address *</label>
+                      <input
+                        class="form-control"
+                        id="address"
+                        required
+                        placeholder="123 Main Street"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">City *</label>
+                      <input
+                        class="form-control"
+                        id="city"
+                        required
+                        placeholder="Enter city"
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">State/Province</label>
+                      <input
+                        class="form-control"
+                        id="state"
+                        placeholder="State"
+                      />
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">ZIP/Postal Code *</label>
+                      <input
+                        class="form-control"
+                        id="zipCode"
+                        required
+                        placeholder="12345"
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Country *</label>
+                      <select class="form-select" id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="JP">Japan</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <hr class="my-4" />
+
+                  <h5 class="mb-4 text-primary border-bottom pb-2">
+                    <i class="fas fa-credit-card me-2"></i>Payment Method
+                  </h5>
+                  <div class="alert alert-info border-info">
+                    <i class="fas fa-info-circle me-2"></i
+                    ><strong>Demo Mode:</strong> This is a demonstration
+                    checkout. No real payments are processed.
+                  </div>
+
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="paymentMethod"
+                          id="creditCard"
+                          checked
+                        />
+                        <label class="form-check-label" for="creditCard">
+                          Credit Card (Demo)
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-grid">
+                    <button
+                      class="btn btn-success btn-lg text-white"
+                      type="submit"
+                    >
+                      <i class="fas fa-check-circle me-2"></i>Complete Order
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div
+              class="card shadow-lg border-0 rounded-3 sticky-top"
+              style="top: 100px"
+            >
+              <div class="card-header bg-light border-bottom">
+                <h5 class="mb-0">
+                  <i class="fas fa-receipt me-2"></i>Order Summary
+                </h5>
+              </div>
+              <div class="card-body">
+                <div id="checkoutItems" class="mb-3">
+                  <!-- Checkout items will be rendered here -->
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Subtotal:</span>
+                  <strong id="checkoutSubtotal">$0.00</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Tax (8%):</span>
+                  <strong id="checkoutTax">$0.00</strong>
+                </div>
+                <hr />
+                <div class="d-flex justify-content-between">
+                  <span class="h5">Total:</span>
+                  <strong class="h5 text-primary" id="checkoutTotal"
+                    >$0.00</strong
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="py-4 bg-dark text-light">
+      <div
+        class="container d-flex justify-content-between align-items-center flex-wrap"
+      >
+        <small>&copy; 2025 The Weeb Den. All rights reserved.</small>
+        <div>
+          <a href="privacy.html" class="text-light me-3 text-decoration-none">
+            <i class="fas fa-shield-alt me-1"></i>Privacy
+          </a>
+          <a href="terms.html" class="text-light text-decoration-none">
+            <i class="fas fa-file-contract me-1"></i>Terms of Service
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/checkout.js"></script>
+  </body>
+</html>

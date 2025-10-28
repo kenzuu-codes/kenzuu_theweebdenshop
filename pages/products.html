@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Products — The Weeb Den</title>
+
+    <!-- Bootstrap and Font Awesome -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/products.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../products/images/weebdenfavicon.ico"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../products/images/weebdenfavicon.ico"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <img
+            src="../products/images/weebden-logo.png"
+            alt="Logo"
+            height="40"
+            class="me-2 rounded"
+          />
+          <span class="fw-bold">The Weeb Den</span>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">
+                <i class="fas fa-home me-1"></i>Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="products.html">
+                <i class="fas fa-book me-1"></i>Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">
+                <i class="fas fa-info-circle me-1"></i>About
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-envelope me-1"></i>Contact
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link position-relative" href="cart.html">
+                <i class="fas fa-shopping-cart me-1"></i>Cart
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  id="cart-badge"
+                  >0</span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <!-- Products header -->
+      <section class="products-header bg-light py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+              <h1 class="display-4 fw-bold mb-3">Manga Collection</h1>
+              <p class="lead text-muted">
+                Discover our curated selection of authentic Japanese manga,
+                light novels, and collectibles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products filters -->
+      <section
+        class="py-4 bg-white shadow-sm sticky-top"
+        style="top: 70px; z-index: 100"
+      >
+        <div class="container">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-5">
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0">
+                  <i class="fas fa-search text-muted"></i>
+                </span>
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="form-control border-start-0 ps-0"
+                  placeholder="Search manga titles or authors..."
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <select id="genreSelect" class="form-select">
+                <option value="">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Romance">Romance</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Horror">Horror</option>
+                <option value="Thriller">Thriller</option>
+              </select>
+            </div>
+            <div class="col-md-3 text-end">
+              <small class="text-muted">
+                <i class="fas fa-filter me-1"></i>
+                <span id="productCount">Loading...</span>
+              </small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products grid -->
+      <section class="py-4">
+        <div class="container">
+          <div class="row" id="allProducts">
+            <!-- Products will be loaded here by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-light">
+      <div
+        class="container d-flex justify-content-between align-items-center flex-wrap"
+      >
+        <small>&copy; 2025 The Weeb Den. All rights reserved.</small>
+        <div>
+          <a href="privacy.html" class="text-light me-3 text-decoration-none">
+            <i class="fas fa-shield-alt me-1"></i>Privacy
+          </a>
+          <a href="terms.html" class="text-light text-decoration-none">
+            <i class="fas fa-file-contract me-1"></i>Terms of Service
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/products.js"></script>
+  </body>
+</html>
