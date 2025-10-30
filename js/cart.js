@@ -1,9 +1,6 @@
 // Cart page specific JavaScript
 
 function renderCartItems() {
-  console.log('=== RENDER CART ITEMS ===')
-  console.log('Current cart:', cart)
-
   let cartContainer = document.getElementById('cartItems')
   let cartEmpty = document.getElementById('cartEmpty')
   let cartContent = document.getElementById('cartContent')
@@ -11,18 +8,11 @@ function renderCartItems() {
   let taxEl = document.getElementById('tax')
   let totalEl = document.getElementById('total')
 
-  console.log('Cart container found:', !!cartContainer)
-  console.log('Cart empty div found:', !!cartEmpty)
-  console.log('Cart content div found:', !!cartContent)
-
   if (cart.length === 0) {
-    console.log('Cart is empty, showing empty message')
     if (cartEmpty) cartEmpty.classList.remove('d-none')
     if (cartContent) cartContent.classList.add('d-none')
     return
   }
-
-  console.log('Cart has items, rendering...')
   if (cartEmpty) cartEmpty.classList.add('d-none')
   if (cartContent) cartContent.classList.remove('d-none')
 

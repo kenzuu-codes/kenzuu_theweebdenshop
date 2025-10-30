@@ -104,12 +104,7 @@ function updateCartBadge() {
 }
 
 function addToCart(productId) {
-  console.log('=== ADD TO CART CALLED ===')
-  console.log('Product ID:', productId)
-  console.log('Current cart:', cart)
-
   fetchProducts(function (products) {
-    console.log('Products loaded:', products.length)
     let product = null
     for (let i = 0; i < products.length; i++) {
       if (products[i].id === productId) {
@@ -146,7 +141,6 @@ function addToCart(productId) {
         return
       }
       existingItem.quantity++
-      console.log('Updated existing item quantity:', existingItem.quantity)
     } else {
       cart.push({
         id: product.id,
@@ -156,13 +150,9 @@ function addToCart(productId) {
         quantity: 1,
         stock: product.stock,
       })
-      console.log('Added new item to cart')
     }
 
-    console.log('Cart before save:', cart)
     saveCart()
-    console.log('Cart after save:', cart)
-    console.log('LocalStorage:', localStorage.getItem('cart'))
     showNotification(product.name + ' added to cart!', 'success')
   })
 }
@@ -223,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (addBtn && !addBtn.disabled) {
       let productId = addBtn.getAttribute('data-product-id')
       if (productId) {
-        console.log('Button clicked, product ID:', productId)
         addToCart(productId)
       }
     }
@@ -233,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (detailBtn && !detailBtn.disabled) {
       let productId = detailBtn.getAttribute('data-product-id')
       if (productId) {
-        console.log('Detail button clicked, product ID:', productId)
         addToCart(productId)
       }
     }

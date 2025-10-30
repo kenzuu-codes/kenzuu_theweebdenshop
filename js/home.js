@@ -96,7 +96,26 @@ function initHome() {
   })
 }
 
+// Newsletter subscription handler
+function handleNewsletter(event) {
+  event.preventDefault()
+  let emailInput = document.getElementById('newsletterEmail')
+  if (emailInput && emailInput.value) {
+    showNotification(
+      'Thank you for subscribing! Check your email for exclusive deals.',
+      'success'
+    )
+    emailInput.value = ''
+  }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function () {
   initHome()
+
+  // Newsletter form
+  let newsletterForm = document.getElementById('newsletterForm')
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', handleNewsletter)
+  }
 })

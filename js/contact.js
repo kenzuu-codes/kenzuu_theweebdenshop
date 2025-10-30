@@ -14,7 +14,7 @@ function handleContactForm(event) {
   let subject = document.getElementById('subject').value
   let message = document.getElementById('message').value
 
-  console.log('Contact form submitted:', { name, email, subject, message })
+  // In production, this would send data to a server
   showNotification(
     'Thank you for your message! We will get back to you soon.',
     'success'
