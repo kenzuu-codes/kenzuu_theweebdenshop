@@ -13,6 +13,14 @@
       content="manga, anime, light novels, Japanese books, otaku, collectibles"
     />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -24,8 +32,8 @@
       rel="stylesheet"
     />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/theme.css" />
 
     <!-- Favicon -->
     <link
@@ -109,17 +117,80 @@
     </nav>
 
     <main class="main-content">
-      <!-- Hero Section -->
+      <!-- Hero Section with Carousel Background -->
       <section class="hero">
-        <div class="container">
+        <!-- Background Carousel -->
+        <div
+          id="heroCarousel"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+          data-bs-interval="4000"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div
+                class="hero-bg"
+                style="
+                  background-image: url('products/images/mangalandingpage1.png');
+                "
+              ></div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="hero-bg"
+                style="
+                  background-image: url('products/images/mangalandingpage2.jpg');
+                "
+              ></div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="hero-bg"
+                style="
+                  background-image: url('products/images/mangalandingpage3.jpg');
+                "
+              ></div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="hero-bg"
+                style="
+                  background-image: url('products/images/mangalandingpage4.jpg');
+                "
+              ></div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="hero-bg"
+                style="
+                  background-image: url('products/images/mangalandingpage5.jpg');
+                "
+              ></div>
+            </div>
+            <div class="carousel-item">
+              <div
+                class="hero-bg"
+                style="
+                  background-image: url('products/images/mangalandingpage6.jpg');
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Content Overlay -->
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
           <div class="row align-items-center min-vh-100">
             <div class="col-lg-7 col-xl-6">
-              <div class="hero-content" data-aos="fade-right">
-                <span class="badge bg-warning text-dark mb-3 px-3 py-2">
-                  <i class="fas fa-star me-1"></i>Premium Manga Collection
+              <div class="hero-content">
+                <span class="hero-badge mb-3">
+                  <i class="fas fa-star me-2"></i>Premium Manga Collection
                 </span>
-                <h1 class="display-2 fw-bold mb-4 text-white">The Weeb Den</h1>
-                <p class="lead mb-4 fs-5">
+                <h1 class="hero-title mb-4">
+                  <span class="text-jp">ようこそ</span> The Weeb Den
+                </h1>
+                <p class="hero-subtitle mb-4">
                   Your ultimate otaku paradise for authentic Japanese manga,
                   light novels, and collectibles. Discover rare editions,
                   complete series, and exclusive imports from the heart of
@@ -128,13 +199,13 @@
                 <div class="hero-buttons d-flex flex-wrap gap-3">
                   <a
                     href="pages/products.html"
-                    class="btn btn-primary btn-lg shadow-lg"
+                    class="btn btn-hero-primary btn-lg"
                   >
                     <i class="fas fa-book me-2"></i>Shop Now
                   </a>
                   <a
                     href="pages/about.html"
-                    class="btn btn-outline-light btn-lg"
+                    class="btn btn-hero-secondary btn-lg"
                   >
                     <i class="fas fa-info-circle me-2"></i>Learn More
                   </a>
@@ -227,14 +298,8 @@
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 text-center border-0 shadow-sm hover-lift">
                 <div class="card-body p-4">
-                  <div
-                    class="feature-icon mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10"
-                    style="width: 80px; height: 80px"
-                  >
-                    <i
-                      class="fas fa-award"
-                      style="font-size: 2.5rem; color: #ffffff"
-                    ></i>
+                  <div class="feature-icon mb-3">
+                    <i class="fas fa-award"></i>
                   </div>
                   <h5 class="card-title fw-bold">Authentic Imports</h5>
                   <p class="card-text text-muted small">
@@ -248,14 +313,8 @@
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 text-center border-0 shadow-sm hover-lift">
                 <div class="card-body p-4">
-                  <div
-                    class="feature-icon mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10"
-                    style="width: 80px; height: 80px"
-                  >
-                    <i
-                      class="fas fa-gem text-success"
-                      style="font-size: 2.5rem"
-                    ></i>
+                  <div class="feature-icon mb-3">
+                    <i class="fas fa-gem"></i>
                   </div>
                   <h5 class="card-title fw-bold">Rare Collections</h5>
                   <p class="card-text text-muted small">
@@ -269,14 +328,8 @@
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 text-center border-0 shadow-sm hover-lift">
                 <div class="card-body p-4">
-                  <div
-                    class="feature-icon mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-warning bg-opacity-10"
-                    style="width: 80px; height: 80px"
-                  >
-                    <i
-                      class="fas fa-shipping-fast text-warning"
-                      style="font-size: 2.5rem"
-                    ></i>
+                  <div class="feature-icon mb-3">
+                    <i class="fas fa-shipping-fast"></i>
                   </div>
                   <h5 class="card-title fw-bold">Fast Delivery</h5>
                   <p class="card-text text-muted small">
@@ -290,14 +343,8 @@
             <div class="col-md-6 col-lg-3">
               <div class="card h-100 text-center border-0 shadow-sm hover-lift">
                 <div class="card-body p-4">
-                  <div
-                    class="feature-icon mb-3 d-inline-flex align-items-center justify-content-center rounded-circle bg-info bg-opacity-10"
-                    style="width: 80px; height: 80px"
-                  >
-                    <i
-                      class="fas fa-headset text-info"
-                      style="font-size: 2.5rem"
-                    ></i>
+                  <div class="feature-icon mb-3">
+                    <i class="fas fa-headset"></i>
                   </div>
                   <h5 class="card-title fw-bold">24/7 Support</h5>
                   <p class="card-text text-muted small">
@@ -314,13 +361,13 @@
       <!-- CTA Section -->
       <section
         class="section bg-gradient-primary text-white"
-        style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%)"
+        style="background: linear-gradient(135deg, #e94560 0%, #c23047 100%)"
       >
         <div class="container">
           <div class="row">
             <div class="col-lg-8 mx-auto text-center">
               <i class="fas fa-shopping-bag fa-3x mb-4 opacity-75"></i>
-              <h2 class="display-5 fw-bold mb-3">
+              <h2 class="display-5 fw-bold mb-3 text-white">
                 Ready to Start Your Collection?
               </h2>
               <p class="lead mb-4 text-white">

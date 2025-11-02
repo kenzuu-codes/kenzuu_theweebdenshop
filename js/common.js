@@ -119,8 +119,6 @@ function addToCart(productId) {
       return
     }
 
-    console.log('Product found:', product)
-
     if (product.stock === 0) {
       console.warn('Product out of stock')
       showNotification('This product is out of stock!', 'error')
