@@ -1,73 +1,93 @@
 /* ==========================================
-   THE WEEB DEN - COMMON STYLES
-   Unified Global Stylesheet
-   Anime/Manga E-Commerce Theme
+   THE WEEB DEN - GLOBAL STYLES
+   Common CSS for all pages
    ========================================== */
 
 /* ========================================
-   1. CSS VARIABLES - 60-30-10 COLOR SYSTEM
+   COLOR SYSTEM
+   60% Primary, 30% Secondary, 10% Accent
    ======================================== */
 
 :root {
-  /* ===== CORE PALETTE (60-30-10 Rule) ===== */
-
-  /* PRIMARY (60% - Backgrounds, Base) */
+  /* Primary colors - dark blue shades for backgrounds and headers */
   --color-primary: #1a1a2e;
   --color-primary-light: #16213e;
   --color-primary-lighter: #0f3460;
 
-  /* SECONDARY (30% - Sections, Panels) */
+  /* Secondary colors - white and light grays for content areas */
   --color-secondary: #ffffff;
   --color-secondary-light: #f8f9fa;
   --color-secondary-dark: #faf8f5;
 
-  /* ACCENT (10% - Buttons, Links, Highlights) */
+  /* Accent colors - red/pink for buttons and highlights */
   --color-accent: #e94560;
   --color-accent-dark: #c23047;
   --color-accent-darker: #a12838;
 
-  /* ===== NEUTRAL SHADES ===== */
-
-  /* Text */
+  /* Text colors */
   --color-text: #2d3436;
   --color-text-light: #636e72;
   --color-text-lighter: #95a5a6;
 
-  /* Borders */
+  /* Border colors */
   --color-border: #e0e0e0;
   --color-border-light: #eceff1;
 
-  /* ===== FUNCTIONAL COLORS ===== */
-
-  /* Status Colors */
+  /* Status colors for alerts and notifications */
   --color-success: #00b894;
   --color-warning: #f39c12;
   --color-danger: #ff6b6b;
 
-  /* ===== SPACING & LAYOUT ===== */
-
+  /* Spacing and layout */
   --spacing-section: 4rem 0;
   --spacing-card: 1.5rem;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
 
-  /* ===== SHADOWS ===== */
-
+  /* Shadow depths */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);
 
-  /* ===== TRANSITIONS ===== */
-
+  /* Animation speeds */
   --transition-fast: all 0.2s ease;
   --transition-normal: all 0.3s ease;
   --transition-slow: all 0.5s ease;
+
+  /* Font sizes that scale responsively using clamp */
+
+  --font-base: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-small: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-large: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-h6: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-h5: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --font-h4: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --font-h3: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --font-h2: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+  --font-h1: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+
+  /* Spacing that adapts to screen size */
+  --spacing-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --spacing-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+  --spacing-md: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+  --spacing-lg: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --spacing-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --spacing-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --spacing-3xl: clamp(3rem, 2rem + 5vw, 4rem);
+
+  /* Button padding for different sizes */
+  --btn-padding-sm: clamp(0.375rem, 0.3rem + 0.375vw, 0.5rem)
+    clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+  --btn-padding-md: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem)
+    clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --btn-padding-lg: clamp(0.625rem, 0.5rem + 0.625vw, 0.875rem)
+    clamp(1.25rem, 1rem + 1.25vw, 1.75rem);
 }
 
 /* ========================================
-   2. RESET & BASE STYLES
+   RESET AND BASE STYLES
    ======================================== */
 
 * {
@@ -119,7 +139,8 @@ main {
 }
 
 /* ========================================
-   3. TYPOGRAPHY
+   TYPOGRAPHY
+   Heading and text styles
    ======================================== */
 
 h1,
@@ -172,7 +193,7 @@ a:hover {
 }
 
 /* ========================================
-   4. LAYOUT COMPONENTS
+   LAYOUT AND CONTAINERS
    ======================================== */
 
 img,
@@ -212,7 +233,7 @@ img {
 }
 
 /* ========================================
-   5. NAVIGATION
+   NAVIGATION BAR
    ======================================== */
 
 .navbar {
@@ -250,9 +271,9 @@ img {
 
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.9) !important;
-  padding: 0.5rem 0.8rem !important;
+  padding: var(--btn-padding-sm) !important;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: var(--font-base);
   position: relative;
   transition: var(--transition-fast);
 }
@@ -290,39 +311,20 @@ img {
 }
 
 /* ========================================
-   6. BUTTONS
+   BUTTONS AND BUTTON STYLES
    ======================================== */
 
 .btn {
   border-radius: var(--border-radius);
-  padding: 0.75rem 1.5rem;
+  padding: var(--btn-padding-md);
   font-weight: 500;
-  transition: var(--transition);
+  font-size: var(--font-base);
+  transition: var(--transition-normal);
   border: none;
   cursor: pointer;
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.5s, height 0.5s;
-}
-
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
 }
 
 .btn-primary {
@@ -341,7 +343,7 @@ img {
     var(--color-primary-light) 0%,
     var(--color-primary-lighter) 100%
   );
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
   color: var(--color-secondary);
 }
@@ -362,7 +364,7 @@ img {
     var(--color-accent-dark) 0%,
     var(--color-accent-darker) 100%
   );
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-md);
   color: var(--color-secondary);
 }
@@ -374,7 +376,7 @@ img {
 
 .btn-success:hover {
   background-color: #00a383;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-outline-primary {
@@ -386,7 +388,7 @@ img {
 .btn-outline-primary:hover {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-outline-light {
@@ -398,7 +400,7 @@ img {
 .btn-outline-light:hover {
   background-color: var(--color-secondary);
   color: var(--color-primary);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-outline-secondary {
@@ -410,7 +412,7 @@ img {
 .btn-outline-secondary:hover {
   background-color: var(--color-accent);
   color: var(--color-secondary);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn:disabled,
@@ -432,12 +434,17 @@ img {
 }
 
 .btn-sm {
-  font-size: 0.85rem;
-  padding: 0.5rem 1rem;
+  font-size: var(--font-small);
+  padding: var(--btn-padding-sm);
+}
+
+.btn-lg {
+  font-size: var(--font-large);
+  padding: var(--btn-padding-lg);
 }
 
 /* ========================================
-   7. CARDS
+   CARDS AND PRODUCT CARDS
    ======================================== */
 
 .card {
@@ -450,8 +457,8 @@ img {
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .card-body {
@@ -462,22 +469,23 @@ img {
   color: var(--color-primary);
   font-weight: 600;
   margin-bottom: 0.75rem;
+  font-size: var(--font-h6);
 }
 
 .card-text {
   color: var(--color-text-lighter);
-  font-size: 0.9rem;
+  font-size: var(--font-small);
   line-height: 1.5;
 }
 
 .card-img-top {
-  transition: var(--transition-slow);
+  transition: var(--transition-normal);
   aspect-ratio: 3/4;
   object-fit: cover;
 }
 
 .card:hover .card-img-top {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 /* Product Cards */
@@ -614,16 +622,17 @@ img {
   background-color: var(--color-secondary-light);
   color: var(--color-primary);
   border: 1px solid var(--color-border);
-  font-size: 0.85rem;
-  padding: 0.4rem 0.75rem;
+  font-size: var(--font-small);
+  padding: var(--btn-padding-sm);
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: var(--transition-normal);
 }
 
 .btn-details:hover {
   background-color: var(--color-primary);
   color: var(--color-secondary) !important;
   border-color: var(--color-primary);
+  transform: translateY(-1px);
 }
 
 .btn-add {
@@ -635,10 +644,10 @@ img {
   );
   color: var(--color-secondary);
   border: none;
-  font-size: 0.85rem;
-  padding: 0.4rem 0.75rem;
+  font-size: var(--font-small);
+  padding: var(--btn-padding-sm);
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: var(--transition-normal);
 }
 
 .btn-add:hover {
@@ -648,7 +657,7 @@ img {
     var(--color-accent-darker)
   );
   color: var(--color-secondary) !important;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-add:disabled {
@@ -891,21 +900,46 @@ textarea:focus-visible {
 
 .animate-bounce {
   animation: bounce 2s infinite;
+  color: #ffffff !important;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.animate-bounce:hover {
+  opacity: 1;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 1));
+}
+
+/* Ensure arrow icon inherits white color */
+a .animate-bounce,
+.text-white .animate-bounce {
+  color: #ffffff !important;
 }
 
 /* ========================================
    14. RESPONSIVE DESIGN
+   Ensures consistent sizing across all devices
    ========================================== */
 
-/* Small screens */
+/* Mobile phones */
 @media (max-width: 576px) {
+  :root {
+    --spacing-section: 2rem 0;
+    --spacing-card: 1rem;
+  }
+
+  body {
+    font-size: var(--font-base);
+  }
+
   .navbar {
     padding: 0.4rem 0;
     min-height: 56px;
   }
 
   .navbar-brand {
-    font-size: 1.1rem;
+    font-size: var(--font-h5);
   }
 
   .navbar-brand img {
@@ -913,51 +947,89 @@ textarea:focus-visible {
     max-height: 32px;
   }
 
-  .navbar-brand span {
-    font-size: 1rem;
-  }
-
   .navbar-nav .nav-link {
-    font-size: 0.9rem;
-    padding: 0.6rem 1rem !important;
+    padding: var(--spacing-sm) var(--spacing-md) !important;
   }
 
   .navbar-toggler {
-    padding: 0.2rem 0.4rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 
-  .display-2 {
-    font-size: 2.5rem;
+  .container {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
   }
 
-  .display-5 {
-    font-size: 2rem;
+  h1,
+  .h1 {
+    font-size: var(--font-h1);
+  }
+
+  h2,
+  .h2 {
+    font-size: var(--font-h2);
+  }
+
+  h3,
+  .h3 {
+    font-size: var(--font-h3);
+  }
+
+  .btn {
+    padding: var(--btn-padding-sm);
+    font-size: var(--font-base);
+  }
+
+  .btn-lg {
+    padding: var(--btn-padding-md);
+  }
+
+  .card-body {
+    padding: var(--spacing-md);
   }
 }
 
-/* Medium screens */
-@media (max-width: 768px) {
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
   .navbar-brand {
-    font-size: 1.15rem;
+    font-size: var(--font-h4);
   }
 
   .navbar-brand img {
-    height: 33px !important;
+    height: 35px !important;
+  }
+
+  .btn {
+    padding: var(--btn-padding-md);
   }
 }
 
-/* Large screens */
+/* Small laptops and large tablets */
+@media (min-width: 769px) and (max-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Desktop and large screens */
 @media (min-width: 1200px) {
   .navbar-brand {
-    font-size: 1.3rem;
+    font-size: var(--font-h4);
   }
 
   .navbar-brand img {
     height: 38px !important;
   }
 
-  .navbar-nav .nav-link {
-    padding: 0.5rem 0.9rem !important;
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
   }
 }
 
@@ -1017,5 +1089,332 @@ textarea:focus-visible {
 
   .btn {
     border: 2px solid currentColor;
+  }
+}
+
+/* ========================================
+   17. TOUCH-FRIENDLY ENHANCEMENTS
+   ======================================== */
+
+/* Ensure all interactive elements meet minimum touch target size */
+.btn,
+button,
+a.nav-link,
+.navbar-toggler {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Better focus states for accessibility */
+.btn:focus,
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection on buttons */
+.btn,
+button {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Better tap highlight for mobile */
+* {
+  -webkit-tap-highlight-color: rgba(26, 26, 46, 0.1);
+  -webkit-touch-callout: none;
+}
+
+/* Ensure images don't overflow containers */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive video embeds */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 576px) {
+  /* Increase spacing between interactive elements */
+  .btn + .btn {
+    margin-left: var(--spacing-sm);
+  }
+
+  /* Better touch targets for form controls */
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='number'],
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  /* Prevent zoom on focus in iOS */
+  input[type='text']:focus,
+  input[type='email']:focus,
+  input[type='tel']:focus,
+  select:focus,
+  textarea:focus {
+    font-size: 16px;
+  }
+
+  /* Better spacing for stacked content */
+  .card + .card {
+    margin-top: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   18. SKELETON LOADING STATES
+   ======================================== */
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.5rem;
+  width: 60%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-image {
+  width: 100%;
+  padding-top: 130%;
+  position: relative;
+}
+
+/* Enhanced loading spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(26, 26, 46, 0.1);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   19. EMPTY STATES
+   ======================================== */
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.empty-state-title {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.empty-state-description {
+  color: var(--color-text-muted);
+  max-width: 400px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+/* ========================================
+   20. IMPROVED FORM VALIDATION
+   ======================================== */
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: var(--color-success);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--color-accent);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23e94560'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e94560' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.valid-feedback {
+  color: var(--color-success);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.invalid-feedback {
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ========================================
+   21. SCROLL TO TOP BUTTON
+   ======================================== */
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+}
+
+.scroll-to-top-btn:hover {
+  background: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 576px) {
+  .scroll-to-top-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+}
+
+/* ========================================
+   22. FADE-IN ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Stagger animation for multiple items */
+.fade-in:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.fade-in:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.fade-in:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.fade-in:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.fade-in:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.fade-in:nth-child(6) {
+  animation-delay: 0.3s;
+}
+.fade-in:nth-child(7) {
+  animation-delay: 0.35s;
+}
+.fade-in:nth-child(8) {
+  animation-delay: 0.4s;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .hover-lift,
+  .product-card,
+  .scroll-to-top-btn {
+    animation: none !important;
+    transition: none !important;
   }
 }

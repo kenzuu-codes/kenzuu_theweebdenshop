@@ -112,11 +112,16 @@
 
           <!-- Empty cart message -->
           <div id="cartEmpty" class="d-none">
-            <div class="alert alert-info text-center py-5">
-              <i class="fas fa-shopping-cart fa-3x mb-3 text-muted"></i>
-              <h4>Your cart is empty</h4>
-              <p class="text-muted">Add some manga to your collection!</p>
-              <a href="products.html" class="btn btn-primary mt-3">
+            <div class="empty-state">
+              <div class="empty-state-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <h3 class="empty-state-title">Your cart is empty</h3>
+              <p class="empty-state-description">
+                Looks like you haven't added any manga to your cart yet. Explore
+                our collection and find your next favorite read!
+              </p>
+              <a href="products.html" class="btn btn-primary btn-lg px-5">
                 <i class="fas fa-book me-2"></i>Browse Products
               </a>
             </div>

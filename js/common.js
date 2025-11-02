@@ -1,18 +1,19 @@
-// Common functions used across all pages
+// ===== COMMON.JS =====
+// Shared functions for cart, products, and notifications
 
-// Cart management
+// ===== CART MANAGEMENT =====
 let cart = []
 
+// Load cart from localStorage on page load
 function loadCart() {
   try {
     let saved = localStorage.getItem('cart')
     if (saved) {
       let parsed = JSON.parse(saved)
-      // Make sure it's actually an array
       if (Array.isArray(parsed)) {
         cart = parsed
       } else {
-        console.warn('Cart in localStorage is not an array, resetting')
+        console.warn('Cart data invalid, resetting')
         cart = []
         localStorage.removeItem('cart')
       }
@@ -25,11 +26,14 @@ function loadCart() {
   updateCartBadge()
 }
 
+// Save cart to localStorage
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart))
   updateCartBadge()
 }
 
+// ===== NOTIFICATIONS =====
+// Display success, error, or info messages to user
 function showNotification(message, type = 'success') {
   let existing = document.querySelector('.custom-notification')
   if (existing) {
@@ -92,6 +96,7 @@ function showNotification(message, type = 'success') {
   }, 3000)
 }
 
+// Update the cart badge count in navigation
 function updateCartBadge() {
   let badge = document.getElementById('cart-badge')
   if (badge) {
@@ -103,6 +108,8 @@ function updateCartBadge() {
   }
 }
 
+// ===== ADD TO CART =====
+// Adds a product to cart or increases quantity if already exists
 function addToCart(productId) {
   fetchProducts(function (products) {
     let product = null
@@ -173,12 +180,20 @@ function fetchProducts(callback) {
     })
 }
 
-// Format price
+// ===== UTILITY FUNCTIONS =====
+
+// Format price in Philippine Pesos
 function formatPrice(price) {
-  return '$' + price.toFixed(2)
+  return (
+    '₱' +
+    price.toLocaleString('en-PH', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  )
 }
 
-// Generate star rating HTML
+// Generate star rating HTML from number (0-5)
 function generateStars(rating) {
   let stars = ''
   let fullStars = Math.floor(rating)
@@ -200,11 +215,12 @@ function generateStars(rating) {
   return stars
 }
 
-// Initialize cart on page load
+// ===== INITIALIZATION =====
+// Load cart and set up event listeners
 document.addEventListener('DOMContentLoaded', function () {
   loadCart()
 
-  // Global event delegation for all add to cart buttons
+  // Handle all "Add to Cart" button clicks
   document.addEventListener('click', function (e) {
     // Handle regular add buttons
     let addBtn = e.target.closest('.btn-add')
@@ -224,4 +240,36 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   })
+
+  // ===== SCROLL TO TOP BUTTON =====
+  createScrollToTopButton()
 })
+
+// ===== SCROLL TO TOP FUNCTIONALITY =====
+function createScrollToTopButton() {
+  // Create button element
+  let scrollBtn = document.createElement('button')
+  scrollBtn.id = 'scrollToTop'
+  scrollBtn.className = 'scroll-to-top-btn'
+  scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>'
+  scrollBtn.setAttribute('aria-label', 'Scroll to top')
+  scrollBtn.style.display = 'none'
+  document.body.appendChild(scrollBtn)
+
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 300) {
+      scrollBtn.style.display = 'flex'
+    } else {
+      scrollBtn.style.display = 'none'
+    }
+  })
+
+  // Scroll to top when clicked
+  scrollBtn.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  })
+}

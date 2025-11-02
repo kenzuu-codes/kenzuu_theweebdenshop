@@ -93,10 +93,12 @@ function updateProductCount(count) {
 function setupFilters(allProducts, container) {
   let searchInput = document.getElementById('searchInput')
   let genreSelect = document.getElementById('genreSelect')
+  let priceFilter = document.getElementById('priceFilter')
 
   function filterProducts() {
     let searchTerm = searchInput ? searchInput.value.toLowerCase() : ''
     let selectedGenre = genreSelect ? genreSelect.value : ''
+    let selectedPrice = priceFilter ? priceFilter.value : ''
 
     let filtered = []
     for (let i = 0; i < allProducts.length; i++) {
@@ -107,7 +109,15 @@ function setupFilters(allProducts, container) {
         product.author.toLowerCase().includes(searchTerm)
       let matchesGenre = !selectedGenre || product.genre === selectedGenre
 
-      if (matchesSearch && matchesGenre) {
+      let matchesPrice = true
+      if (selectedPrice) {
+        let priceRange = selectedPrice.split('-')
+        let minPrice = parseInt(priceRange[0])
+        let maxPrice = parseInt(priceRange[1])
+        matchesPrice = product.price >= minPrice && product.price <= maxPrice
+      }
+
+      if (matchesSearch && matchesGenre && matchesPrice) {
         filtered.push(product)
       }
     }
@@ -122,6 +132,10 @@ function setupFilters(allProducts, container) {
 
   if (genreSelect) {
     genreSelect.addEventListener('change', filterProducts)
+  }
+
+  if (priceFilter) {
+    priceFilter.addEventListener('change', filterProducts)
   }
 }
 

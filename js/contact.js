@@ -1,4 +1,5 @@
-// Contact page specific JavaScript
+// ===== CONTACT.JS =====
+// Contact page form submission handler
 
 function handleContactForm(event) {
   event.preventDefault()

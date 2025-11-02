@@ -57,7 +57,7 @@ function initProductDetail() {
       imagePath +
       '" class="img-fluid rounded shadow" alt="' +
       product.name +
-      '"></div></div>' +
+      '" loading="lazy"></div></div>' +
       '<div class="col-lg-7"><div class="product-detail-info">' +
       '<div class="mb-3"><h1 class="product-detail-title mb-2">' +
       product.name +
@@ -73,7 +73,7 @@ function initProductDetail() {
       '<div class="product-price-section mb-4"><div class="d-flex align-items-center justify-content-between flex-wrap">' +
       '<div><h2 class="product-price mb-0">' +
       formatPrice(product.price) +
-      '</h2><small class="text-muted">Free shipping on orders over $50</small></div>' +
+      '</h2><small class="text-muted">Free shipping on orders over ₱2,500</small></div>' +
       '<div><span class="badge ' +
       stockBadge +
       ' fs-6"><i class="fas fa-box me-1"></i>' +
@@ -94,7 +94,81 @@ function initProductDetail() {
       '<a href="cart.html" class="btn btn-outline-secondary"><i class="fas fa-shopping-cart me-2"></i>View Cart</a>' +
       '<a href="products.html" class="btn btn-outline-primary"><i class="fas fa-arrow-left me-2"></i>Back to Products</a>' +
       '</div></div></div></div>'
+
+    // Show related products
+    showRelatedProducts(product, products)
   })
+}
+
+// Show related products based on same genre
+function showRelatedProducts(currentProduct, allProducts) {
+  let relatedContainer = document.getElementById('relatedProducts')
+  if (!relatedContainer) return
+
+  // Filter products by same genre, exclude current product
+  let related = []
+  for (let i = 0; i < allProducts.length; i++) {
+    if (
+      allProducts[i].genre === currentProduct.genre &&
+      allProducts[i].id !== currentProduct.id
+    ) {
+      related.push(allProducts[i])
+    }
+  }
+
+  // Shuffle and take first 4
+  for (let i = related.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1))
+    let temp = related[i]
+    related[i] = related[j]
+    related[j] = temp
+  }
+  related = related.slice(0, 4)
+
+  if (related.length === 0) {
+    relatedContainer.innerHTML = ''
+    return
+  }
+
+  let html =
+    '<div class="related-products-section mt-5 pt-4 border-top">' +
+    '<h3 class="mb-4"><i class="fas fa-book-open me-2"></i>Related Products</h3>' +
+    '<div class="row g-4">'
+
+  for (let i = 0; i < related.length; i++) {
+    let product = related[i]
+    let imagePath = '../' + product.image
+    html +=
+      '<div class="col-sm-6 col-lg-3">' +
+      '<div class="card product-card h-100 shadow-sm">' +
+      '<div class="position-relative overflow-hidden">' +
+      '<img src="' +
+      imagePath +
+      '" class="card-img-top" alt="' +
+      product.name +
+      '" loading="lazy">' +
+      '</div>' +
+      '<div class="card-body d-flex flex-column">' +
+      '<h5 class="card-title text-truncate">' +
+      product.name +
+      '</h5>' +
+      '<p class="author-info mb-2 small"><i class="fas fa-user-edit me-1"></i>' +
+      product.author +
+      '</p>' +
+      '<div class="rating mb-2">' +
+      generateStars(product.rating) +
+      '</div>' +
+      '<div class="price-section mb-3"><span class="price">' +
+      formatPrice(product.price) +
+      '</span></div>' +
+      '<a href="product.html?id=' +
+      product.id +
+      '" class="btn btn-sm btn-primary mt-auto">View Details</a>' +
+      '</div></div></div>'
+  }
+
+  html += '</div></div>'
+  relatedContainer.innerHTML = html
 }
 
 // Initialize on page load

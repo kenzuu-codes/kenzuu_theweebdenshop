@@ -1,10 +1,17 @@
-// Checkout page specific JavaScript
+// ===== CHECKOUT.JS =====
+// Checkout page functions for order processing
 
 function initCheckout() {
   let checkoutItems = document.getElementById('checkoutItems')
   let subtotalEl = document.getElementById('checkoutSubtotal')
   let taxEl = document.getElementById('checkoutTax')
   let totalEl = document.getElementById('checkoutTotal')
+
+  // Show loading state
+  if (checkoutItems) {
+    checkoutItems.innerHTML =
+      '<div class="text-center py-3"><div class="spinner-border spinner-border-sm text-primary" role="status"></div></div>'
+  }
 
   if (cart.length === 0) {
     window.location.href = 'cart.html'
@@ -64,8 +71,20 @@ function handleCheckout(event) {
     return
   }
 
+  // Get selected payment method
+  let paymentMethod = 'GCash'
+  let paymentRadios = document.querySelectorAll('input[name="paymentMethod"]')
+  for (let i = 0; i < paymentRadios.length; i++) {
+    if (paymentRadios[i].checked) {
+      paymentMethod = paymentRadios[i].nextElementSibling.textContent.trim()
+      break
+    }
+  }
+
   showNotification(
-    'Order placed successfully! Thank you for your purchase.',
+    'Order placed successfully via ' +
+      paymentMethod +
+      '! Thank you for your purchase.',
     'success'
   )
   cart = []

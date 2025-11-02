@@ -1,4 +1,5 @@
-// Cart page specific JavaScript
+// ===== CART.JS =====
+// Cart page functions for managing shopping cart
 
 function renderCartItems() {
   let cartContainer = document.getElementById('cartItems')
@@ -7,6 +8,12 @@ function renderCartItems() {
   let subtotalEl = document.getElementById('subtotal')
   let taxEl = document.getElementById('tax')
   let totalEl = document.getElementById('total')
+
+  // Show loading state
+  if (cartContainer) {
+    cartContainer.innerHTML =
+      '<div class="text-center py-4"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>'
+  }
 
   if (cart.length === 0) {
     if (cartEmpty) cartEmpty.classList.remove('d-none')
@@ -25,50 +32,61 @@ function renderCartItems() {
     subtotal += itemTotal
 
     html +=
-      '<div class="cart-item p-3 mb-3 bg-white rounded shadow-sm">' +
-      '<div class="row g-3 align-items-center">' +
-      '<div class="col-md-2 col-3">' +
+      '<div class="cart-item mb-3 bg-white rounded-3 shadow-sm overflow-hidden border border-light">' +
+      '<div class="row g-0 align-items-center">' +
+      '<div class="col-lg-2 col-md-3 col-4">' +
+      '<div class="position-relative" style="padding-top: 130%;">' +
       '<img src="../' +
       item.image +
-      '" class="img-fluid rounded" alt="' +
+      '" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover;" alt="' +
       item.name +
-      '">' +
+      '" loading="lazy">' +
       '</div>' +
-      '<div class="col-md-4 col-9">' +
-      '<h6 class="mb-1">' +
+      '</div>' +
+      '<div class="col-lg-10 col-md-9 col-8">' +
+      '<div class="p-3 p-md-4">' +
+      '<div class="row g-3 align-items-center">' +
+      '<div class="col-lg-4 col-md-12">' +
+      '<h5 class="mb-2 fw-bold text-truncate">' +
       item.name +
-      '</h6>' +
-      '<small class="text-muted">Price: ' +
+      '</h5>' +
+      '<div class="d-flex align-items-center gap-3 flex-wrap">' +
+      '<span class="badge bg-primary-subtle text-primary border border-primary">' +
       formatPrice(item.price) +
-      '</small>' +
-      '</div>' +
-      '<div class="col-md-3 col-6">' +
-      '<div class="input-group input-group-sm">' +
-      '<button class="btn btn-outline-secondary" onclick="updateQuantity(\'' +
-      item.id +
-      '\', -1)">-</button>' +
-      '<input type="text" class="form-control text-center" value="' +
-      item.quantity +
-      '" readonly>' +
-      '<button class="btn btn-outline-secondary" onclick="updateQuantity(\'' +
-      item.id +
-      '\', 1)">+</button>' +
-      '</div>' +
-      '<small class="text-muted d-block mt-1">Stock: ' +
+      ' each</span>' +
+      '<small class="text-muted"><i class="fas fa-box me-1"></i>Stock: ' +
       item.stock +
       '</small>' +
       '</div>' +
-      '<div class="col-md-2 col-4">' +
-      '<strong>' +
-      formatPrice(itemTotal) +
-      '</strong>' +
       '</div>' +
-      '<div class="col-md-1 col-2">' +
-      '<button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(\'' +
+      '<div class="col-lg-3 col-md-5 col-12">' +
+      '<label class="form-label small text-muted mb-2">Quantity</label>' +
+      '<div class="input-group">' +
+      '<button class="btn btn-outline-primary" onclick="updateQuantity(\'' +
       item.id +
-      '\')"><i class="fas fa-trash"></i></button>' +
+      '\', -1)" type="button"><i class="fas fa-minus"></i></button>' +
+      '<input type="text" class="form-control text-center fw-bold" value="' +
+      item.quantity +
+      '" readonly style="max-width: 60px;">' +
+      '<button class="btn btn-outline-primary" onclick="updateQuantity(\'' +
+      item.id +
+      '\', 1)" type="button"><i class="fas fa-plus"></i></button>' +
       '</div>' +
-      '</div></div>'
+      '</div>' +
+      '<div class="col-lg-3 col-md-4 col-7">' +
+      '<label class="form-label small text-muted mb-2">Subtotal</label>' +
+      '<h4 class="mb-0 text-primary fw-bold">' +
+      formatPrice(itemTotal) +
+      '</h4>' +
+      '</div>' +
+      '<div class="col-lg-2 col-md-3 col-5 text-end">' +
+      '<button class="btn btn-outline-danger" onclick="removeFromCart(\'' +
+      item.id +
+      '\')" title="Remove item">' +
+      '<i class="fas fa-trash-alt me-1"></i><span class="d-none d-md-inline">Remove</span>' +
+      '</button>' +
+      '</div>' +
+      '</div></div></div></div></div>'
   }
 
   if (cartContainer) {

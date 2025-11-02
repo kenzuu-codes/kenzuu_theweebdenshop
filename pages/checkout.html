@@ -192,13 +192,14 @@
                       <label class="form-label">Country *</label>
                       <select class="form-select" id="country" required>
                         <option value="">Select Country</option>
+                        <option value="PH" selected>Philippines</option>
                         <option value="US">United States</option>
                         <option value="CA">Canada</option>
                         <option value="UK">United Kingdom</option>
                         <option value="JP">Japan</option>
                         <option value="AU">Australia</option>
-                        <option value="DE">Germany</option>
-                        <option value="FR">France</option>
+                        <option value="SG">Singapore</option>
+                        <option value="MY">Malaysia</option>
                         <option value="other">Other</option>
                       </select>
                     </div>
@@ -217,17 +218,97 @@
 
                   <div class="row g-3 mb-4">
                     <div class="col-12">
-                      <div class="form-check">
+                      <div class="form-check mb-3 p-3 border rounded">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="paymentMethod"
+                          id="gcash"
+                          checked
+                        />
+                        <label class="form-check-label fw-bold" for="gcash">
+                          <i class="fas fa-mobile-alt me-2 text-primary"></i
+                          >GCash (Philippines)
+                        </label>
+                        <small class="d-block text-muted mt-1"
+                          >Fast and secure mobile wallet payment</small
+                        >
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check mb-3 p-3 border rounded">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="paymentMethod"
+                          id="paypal"
+                        />
+                        <label class="form-check-label fw-bold" for="paypal">
+                          <i class="fab fa-paypal me-2 text-primary"></i>PayPal
+                        </label>
+                        <small class="d-block text-muted mt-1"
+                          >Pay with your PayPal account</small
+                        >
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check mb-3 p-3 border rounded">
                         <input
                           class="form-check-input"
                           type="radio"
                           name="paymentMethod"
                           id="creditCard"
-                          checked
                         />
-                        <label class="form-check-label" for="creditCard">
-                          Credit Card (Demo)
+                        <label
+                          class="form-check-label fw-bold"
+                          for="creditCard"
+                        >
+                          <i class="fas fa-credit-card me-2 text-primary"></i
+                          >Credit/Debit Card
                         </label>
+                        <small class="d-block text-muted mt-1"
+                          >Visa, Mastercard, American Express</small
+                        >
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check mb-3 p-3 border rounded">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="paymentMethod"
+                          id="bankTransfer"
+                        />
+                        <label
+                          class="form-check-label fw-bold"
+                          for="bankTransfer"
+                        >
+                          <i class="fas fa-university me-2 text-primary"></i
+                          >Bank Transfer
+                        </label>
+                        <small class="d-block text-muted mt-1"
+                          >Direct bank transfer (Instructions sent via
+                          email)</small
+                        >
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check mb-3 p-3 border rounded">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="paymentMethod"
+                          id="cod"
+                        />
+                        <label class="form-check-label fw-bold" for="cod">
+                          <i
+                            class="fas fa-money-bill-wave me-2 text-primary"
+                          ></i
+                          >Cash on Delivery
+                        </label>
+                        <small class="d-block text-muted mt-1"
+                          >Pay when you receive your order</small
+                        >
                       </div>
                     </div>
                   </div>

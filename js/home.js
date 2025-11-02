@@ -1,5 +1,7 @@
-// Home page specific JavaScript
+// ===== HOME.JS =====
+// Homepage specific functions for featured products
 
+// Render a single product card with image, title, price, and buttons
 function renderProductCard(product) {
   let imagePath = product.image
 
@@ -67,6 +69,7 @@ function renderProductCard(product) {
   )
 }
 
+// Render multiple products into a container
 function renderProducts(container, products) {
   if (!container) return
 
@@ -83,20 +86,30 @@ function renderProducts(container, products) {
   container.innerHTML = html
 }
 
+// Initialize homepage - load and display 8 random products as featured
 function initHome() {
   let container = document.getElementById('featuredProducts')
   if (!container) return
 
+  // Show loading spinner while fetching
   container.innerHTML =
     '<div class="col-12"><div class="text-center py-5"><div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;"><span class="visually-hidden">Loading...</span></div><p class="text-muted">Loading featured collection...</p></div></div>'
 
   fetchProducts(function (products) {
-    let featured = products.slice(0, 8)
+    // Randomize products using Fisher-Yates shuffle
+    let shuffled = products.slice()
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1))
+      let temp = shuffled[i]
+      shuffled[i] = shuffled[j]
+      shuffled[j] = temp
+    }
+    let featured = shuffled.slice(0, 8)
     renderProducts(container, featured)
   })
 }
 
-// Newsletter subscription handler
+// Handle newsletter form submission
 function handleNewsletter(event) {
   event.preventDefault()
   let emailInput = document.getElementById('newsletterEmail')
@@ -109,11 +122,11 @@ function handleNewsletter(event) {
   }
 }
 
-// Initialize on page load
+// ===== PAGE INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function () {
   initHome()
 
-  // Newsletter form
+  // Set up newsletter form
   let newsletterForm = document.getElementById('newsletterForm')
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', handleNewsletter)
