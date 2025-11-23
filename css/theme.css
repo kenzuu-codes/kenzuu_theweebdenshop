@@ -4,15 +4,34 @@
    ========================================== */
 
 /* ========================================
+   RESPONSIVE VARIABLES - Mobile First
+   Fix: responsive hero, buttons, typography
+   Date: 2025-11-23
+   ======================================== */
+
+:root {
+  --hero-padding-vertical: clamp(2.5rem, 5vh, 4rem);
+  --hero-content-max-width: 720px;
+  --hero-min-height: clamp(60vh, 80vh, 100vh);
+  --btn-gap: clamp(0.75rem, 2vw, 1rem);
+  --notify-scale: 1;
+  --mobile-navbar-height: 64px;
+}
+
+/* ========================================
    HOME PAGE - HERO SECTION
    ======================================== */
 
 .hero {
-  min-height: 100vh;
+  min-height: var(--hero-min-height);
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: var(--hero-padding-vertical) 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 /* Carousel Background */
@@ -36,6 +55,25 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.hero-bg-1 {
+  background-image: url('../products/images/mangalandingpage1.png');
+}
+.hero-bg-2 {
+  background-image: url('../products/images/mangalandingpage2.jpg');
+}
+.hero-bg-3 {
+  background-image: url('../products/images/mangalandingpage3.jpg');
+}
+.hero-bg-4 {
+  background-image: url('../products/images/mangalandingpage4.jpg');
+}
+.hero-bg-5 {
+  background-image: url('../products/images/mangalandingpage5.jpg');
+}
+.hero-bg-6 {
+  background-image: url('../products/images/mangalandingpage6.jpg');
 }
 
 /* Smooth slide animation */
@@ -81,8 +119,11 @@
 }
 
 .hero-content {
-  max-width: 650px;
+  width: 100%;
+  max-width: var(--hero-content-max-width);
+  margin: 0 auto;
   animation: fadeInUp 0.8s ease-out;
+  text-align: left;
 }
 
 /* Hero Badge */
@@ -90,9 +131,9 @@
   display: inline-block;
   background: rgba(243, 156, 18, 0.95);
   color: var(--color-primary);
-  padding: 0.6rem 1.2rem;
+  padding: clamp(0.5rem, 1.5vw, 0.6rem) clamp(1rem, 3vw, 1.2rem);
   border-radius: 50px;
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -102,32 +143,40 @@
 
 /* Hero Title */
 .hero-title {
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(1.8rem, 6.5vw, 5rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--color-secondary);
-  margin-bottom: 1.5rem;
+  margin: 0 0 clamp(0.75rem, 2vh, 1.5rem) 0;
   text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .hero-title .text-jp {
   display: block;
-  font-size: 0.4em;
+  font-size: clamp(0.7rem, 2.5vw, 2rem);
   font-weight: 400;
   opacity: 0.9;
-  margin-bottom: 0.3rem;
+  margin-bottom: clamp(0.2rem, 1vh, 0.3rem);
   letter-spacing: 0.1em;
 }
 
 /* Hero Subtitle */
 .hero-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.8;
+  font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.25rem, 3vh, 2.5rem);
   text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Buttons Container */
+.hero-buttons {
+  display: flex;
+  gap: var(--btn-gap);
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /* Hero Buttons */
@@ -139,12 +188,16 @@
   );
   border: none;
   color: var(--color-secondary);
-  padding: var(--btn-padding-lg);
+  padding: clamp(0.7rem, 2vw, 1rem) clamp(1.25rem, 3.5vw, 2rem);
   font-weight: 600;
-  font-size: var(--font-large);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   border-radius: 50px;
   transition: var(--transition-normal);
   box-shadow: var(--shadow-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
 }
 
 .btn-hero-primary:hover {
@@ -162,12 +215,16 @@
   background: transparent;
   border: 2px solid var(--color-secondary);
   color: var(--color-secondary);
-  padding: var(--btn-padding-lg);
+  padding: clamp(0.7rem, 2vw, 1rem) clamp(1.25rem, 3.5vw, 2rem);
   font-weight: 600;
-  font-size: var(--font-large);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   border-radius: 50px;
   transition: var(--transition-normal);
   backdrop-filter: blur(10px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
 }
 
 .btn-hero-secondary:hover {
@@ -177,18 +234,30 @@
   color: var(--color-secondary);
 }
 
-/* Trust Indicators */
+/* Trust Indicators Stats Row */
+.hero-content .row {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.hero-content .row > div {
+  flex: 1 1 clamp(90px, 25%, 140px);
+  min-width: clamp(80px, 20vw, 100px);
+}
+
 .hero-content .text-white h3 {
   color: var(--color-secondary) !important;
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
   margin-bottom: 0.25rem;
 }
 
 .hero-content .text-white small {
   color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
   font-weight: 500;
   text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -1344,6 +1413,125 @@
   .cart-item .col-5.text-end {
     padding-right: 0.5rem !important;
   }
+
+  /* Products filter bar adjustment for sticky positioning */
+  .products-filters {
+    top: var(--mobile-navbar-height) !important;
+  }
+
+  /* Hero mobile optimizations - responsive fixes */
+  /* Exception: Hero section stays vertically centered with NO top spacing */
+  .hero {
+    min-height: 100vh;
+    height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+  }
+
+  .hero-container .row {
+    min-height: auto;
+    width: 100%;
+    margin: 0;
+  }
+
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  /* Center and justify hero text elements */
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-title .text-jp {
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    text-align: center;
+    text-align-last: center;
+    hyphens: auto;
+    width: 100%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    max-width: 100%;
+    min-height: 52px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .btn-hero-primary i,
+  .btn-hero-secondary i {
+    margin-right: 0.5rem;
+  }
+
+  /* Make trust indicators stack better and center them */
+  .hero-content .row {
+    margin-top: 2rem !important;
+    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-content .row > div {
+    min-width: 90px;
+    text-align: center;
+  }
+
+  .hero-content .row .text-white {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* Tablet optimizations */
@@ -1354,6 +1542,84 @@
 
   .product-card .card-img-top {
     height: 280px;
+  }
+}
+
+/* Extra small mobile adjustments - 360px to 420px */
+@media (max-width: 420px) {
+  .hero {
+    height: 100vh;
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .hero-buttons {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    max-width: 100%;
+    width: 100%;
+    padding: 0.9rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablet adjustments - 768px to 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    min-height: 75vh;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: auto;
+  }
+}
+
+/* Desktop and larger - preserve original design >= 1024px */
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .hero-container {
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    padding-right: var(--bs-gutter-x, 0.75rem);
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: auto;
   }
 }
 

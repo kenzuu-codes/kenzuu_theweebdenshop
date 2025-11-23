@@ -931,6 +931,33 @@ a .animate-bounce,
 
   body {
     font-size: var(--font-base);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Add top spacing for all pages to account for fixed navbar */
+  .main-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* All pages except homepage get top spacing below navbar */
+  main.py-5,
+  main.main-content > .container.py-4,
+  .main-content > section:first-child:not(.hero),
+  .main-content > .py-5:first-child,
+  .products-header,
+  .contact-section,
+  .about-hero,
+  .checkout-section {
+    padding-top: calc(var(--mobile-navbar-height) + 1rem) !important;
+  }
+
+  /* Hero section on homepage stays centered with no top spacing */
+  .hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   .navbar {
@@ -1070,6 +1097,54 @@ a .animate-bounce,
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+/* Notification responsive scaling - Fix for small screens */
+.custom-notification {
+  transform-origin: top right;
+  will-change: transform, opacity;
+}
+
+/* Scale down notifications on small screens (360px - 520px) */
+@media (max-width: 520px) {
+  .custom-notification {
+    transform: scale(0.85);
+    right: 10px !important;
+    top: 80px !important;
+  }
+}
+
+/* Extra small devices - further scale reduction */
+@media (max-width: 390px) {
+  .custom-notification {
+    transform: scale(0.75);
+    right: 5px !important;
+  }
+}
+
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .custom-notification,
+  .custom-notification * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  @keyframes notificationSlideIn {
+    from,
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes notificationIconPop {
+    from,
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 }
 
@@ -1417,4 +1492,57 @@ img {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* ========================================
+   23. UTILITY CLASSES
+   ======================================== */
+
+/* Decorative dividers */
+.divider-accent {
+  width: 60px;
+  height: 3px;
+  background: var(--color-accent);
+  display: inline-block;
+}
+
+.divider-primary {
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  display: inline-block;
+}
+
+/* Icon sizes */
+.icon-lg {
+  width: 80px;
+  height: 80px;
+}
+.icon-md {
+  width: 50px;
+  height: 50px;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-accent {
+  background: linear-gradient(135deg, #e94560 0%, #c23047 100%);
+}
+
+/* Product filter sticky positioning */
+.sticky-filter {
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+}
+
+@media (max-width: 767px) {
+  .sticky-filter {
+    top: var(--mobile-navbar-height);
+  }
+}
+
+/* Checkout summary sticky positioning */
+.sticky-summary {
+  position: sticky;
+  top: 100px;
 }

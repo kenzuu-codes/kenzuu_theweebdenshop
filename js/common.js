@@ -13,13 +13,11 @@ function loadCart() {
       if (Array.isArray(parsed)) {
         cart = parsed
       } else {
-        console.warn('Cart data invalid, resetting')
         cart = []
         localStorage.removeItem('cart')
       }
     }
   } catch (e) {
-    console.error('Error loading cart:', e)
     cart = []
     localStorage.removeItem('cart')
   }
@@ -57,10 +55,25 @@ function showNotification(message, type = 'success') {
       ? 'linear-gradient(135deg, #ef4444, #dc2626)'
       : 'linear-gradient(135deg, #f59e0b, #d97706)'
 
+  // Apply responsive positioning based on viewport width
+  const width = window.innerWidth
+  let topPos = '90px'
+  let rightPos = '20px'
+  let minWidth = '300px'
+
+  if (width <= 390) {
+    rightPos = '5px'
+    minWidth = '280px'
+  } else if (width <= 520) {
+    rightPos = '10px'
+    topPos = '80px'
+    minWidth = '290px'
+  }
+
   notification.style.cssText = `
     position: fixed;
-    top: 90px;
-    right: 20px;
+    top: ${topPos};
+    right: ${rightPos};
     z-index: 9999;
   `
 
@@ -76,14 +89,16 @@ function showNotification(message, type = 'success') {
       gap: 0.75rem;
       font-size: 1rem;
       font-weight: 500;
-      min-width: 300px;
+      min-width: ${minWidth};
+      max-width: calc(100vw - ${rightPos} - ${rightPos});
       animation: notificationSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     ">
       <i class="fas ${icon}" style="
         font-size: 1.5rem;
         animation: notificationIconPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+        flex-shrink: 0;
       "></i>
-      <span>${message}</span>
+      <span style="word-break: break-word;">${message}</span>
     </div>
   `
 
@@ -121,14 +136,12 @@ function addToCart(productId) {
     }
 
     if (!product) {
-      console.error('Product not found:', productId)
       showNotification('Product not found!', 'error')
       return
     }
 
     if (product.stock === 0) {
-      console.warn('Product out of stock')
-      showNotification('This product is out of stock!', 'error')
+      showNotification('Sorry, this product is out of stock', 'error')
       return
     }
 
@@ -176,7 +189,7 @@ function fetchProducts(callback) {
       callback(data)
     })
     .catch(function (error) {
-      console.error('Error loading products:', error)
+      callback([])
     })
 }
 
@@ -243,7 +256,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ===== SCROLL TO TOP BUTTON =====
   createScrollToTopButton()
+
+  // ===== RESPONSIVE NOTIFICATION SCALING =====
+  applyNotificationResponsiveSettings()
 })
+
+// ===== RESPONSIVE NOTIFICATION SETTINGS =====
+// Adjusts notification position and scale based on viewport width
+function applyNotificationResponsiveSettings() {
+  const width = window.innerWidth
+
+  // Apply responsive settings on resize
+  window.addEventListener('resize', function () {
+    const notification = document.querySelector('.custom-notification')
+    if (!notification) return
+
+    const currentWidth = window.innerWidth
+    if (currentWidth <= 390) {
+      // Extra small devices
+      notification.style.transform = 'scale(0.75)'
+      notification.style.right = '5px'
+    } else if (currentWidth <= 520) {
+      // Small devices
+      notification.style.transform = 'scale(0.85)'
+      notification.style.right = '10px'
+    } else {
+      // Normal size for larger screens
+      notification.style.transform = ''
+      notification.style.right = '20px'
+    }
+  })
+}
 
 // ===== SCROLL TO TOP FUNCTIONALITY =====
 function createScrollToTopButton() {
